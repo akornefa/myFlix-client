@@ -21870,8 +21870,9 @@ class MainView extends _reactDefault.default.Component {
             movies: [],
             selectedMovie: null,
             user: null,
-            register: true
+            shouldDisplayRegister: false
         };
+        this.toggleDisplayRegister = this.toggleDisplayRegister.bind(this);
     }
     componentDidMount() {
         _axiosDefault.default.get('https://myflix-app-akornefa.herokuapp.com/movies').then((response)=>{
@@ -21892,15 +21893,16 @@ class MainView extends _reactDefault.default.Component {
             user
         });
     }
-    onRegister(register) {
+    toggleDisplayRegister() {
         this.setState({
-            register
+            shouldDisplayRegister: !this.state.shouldDisplayRegister
         });
     }
     render() {
-        const { movies , selectedMovie , user , register  } = this.state;
-        if (register) return(/*#__PURE__*/ _reactDefault.default.createElement(_registrationView.RegistrationView, {
-            onRegister: (register1)=>this.onRegister(register1)
+        const { movies , selectedMovie , user , shouldDisplayRegister  } = this.state;
+        if (!user && shouldDisplayRegister) return(/*#__PURE__*/ _reactDefault.default.createElement(_registrationView.RegistrationView, {
+            toggleDisplayRegister: this.toggleDisplayRegister,
+            onLoggedIn: (user1)=>this.onLoggedIn(user1)
             ,
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
@@ -21908,7 +21910,8 @@ class MainView extends _reactDefault.default.Component {
             },
             __self: this
         }));
-        if (!user) return(/*#__PURE__*/ _reactDefault.default.createElement(_loginView.LoginView, {
+        if (!user && !shouldDisplayRegister) return(/*#__PURE__*/ _reactDefault.default.createElement(_loginView.LoginView, {
+            toggleDisplayRegister: this.toggleDisplayRegister,
             onLoggedIn: (user1)=>this.onLoggedIn(user1)
             ,
             __source: {
@@ -21921,7 +21924,7 @@ class MainView extends _reactDefault.default.Component {
             className: "main-view",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 60
+                lineNumber: 63
             },
             __self: this
         }));
@@ -21929,7 +21932,7 @@ class MainView extends _reactDefault.default.Component {
             className: "main-view",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 63
+                lineNumber: 66
             },
             __self: this
         }, selectedMovie ? /*#__PURE__*/ _reactDefault.default.createElement(_movieView.MovieView, {
@@ -21939,7 +21942,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 65
+                lineNumber: 68
             },
             __self: this
         }) : movies.map((movie)=>/*#__PURE__*/ _reactDefault.default.createElement(_movieCard.MovieCard, {
@@ -21950,7 +21953,7 @@ class MainView extends _reactDefault.default.Component {
                 },
                 __source: {
                     fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                    lineNumber: 67
+                    lineNumber: 70
                 },
                 __self: this
             })
@@ -23350,20 +23353,37 @@ function RegistrationView(props) {
     const [email, setEmail] = _react.useState('');
     const [birthday, setBirthday] = _react.useState('');
     const handleSubmit = (e)=>{
+<<<<<<< HEAD
         e.preventDefault();
         console.log(username, password, email, birthday);
         /* Send a request to the server for authentication */ /* then call props.onLoggedIn(username) */ props.onRegister(username);
+=======
+        e.preventDefault(e);
+        console.log(username, password, email, birthday);
+        props.onLoggedIn(username);
+    };
+    const handleClick = ()=>{
+        props.toggleDisplayRegister();
+>>>>>>> main
     };
     return(/*#__PURE__*/ _reactDefault.default.createElement("form", {
         __source: {
             fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/registration-view/registration-view.jsx",
+<<<<<<< HEAD
             lineNumber: 18
+=======
+            lineNumber: 21
+>>>>>>> main
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement("label", {
         __source: {
             fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/registration-view/registration-view.jsx",
+<<<<<<< HEAD
             lineNumber: 19
+=======
+            lineNumber: 22
+>>>>>>> main
         },
         __self: this
     }, "Username:", /*#__PURE__*/ _reactDefault.default.createElement("input", {
@@ -23373,13 +23393,21 @@ function RegistrationView(props) {
         ,
         __source: {
             fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/registration-view/registration-view.jsx",
+<<<<<<< HEAD
             lineNumber: 21
+=======
+            lineNumber: 24
+>>>>>>> main
         },
         __self: this
     })), /*#__PURE__*/ _reactDefault.default.createElement("label", {
         __source: {
             fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/registration-view/registration-view.jsx",
+<<<<<<< HEAD
             lineNumber: 23
+=======
+            lineNumber: 26
+>>>>>>> main
         },
         __self: this
     }, "Password:", /*#__PURE__*/ _reactDefault.default.createElement("input", {
@@ -23389,39 +23417,67 @@ function RegistrationView(props) {
         ,
         __source: {
             fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/registration-view/registration-view.jsx",
+<<<<<<< HEAD
             lineNumber: 25
+=======
+            lineNumber: 28
+>>>>>>> main
         },
         __self: this
     })), /*#__PURE__*/ _reactDefault.default.createElement("label", {
         __source: {
             fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/registration-view/registration-view.jsx",
+<<<<<<< HEAD
             lineNumber: 27
         },
         __self: this
     }, "Email:", /*#__PURE__*/ _reactDefault.default.createElement("input", {
         type: "password",
+=======
+            lineNumber: 30
+        },
+        __self: this
+    }, "Email:", /*#__PURE__*/ _reactDefault.default.createElement("input", {
+        type: "text",
+>>>>>>> main
         value: email,
         onChange: (e)=>setEmail(e.target.value)
         ,
         __source: {
             fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/registration-view/registration-view.jsx",
+<<<<<<< HEAD
             lineNumber: 29
+=======
+            lineNumber: 32
+>>>>>>> main
         },
         __self: this
     })), /*#__PURE__*/ _reactDefault.default.createElement("label", {
         __source: {
             fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/registration-view/registration-view.jsx",
+<<<<<<< HEAD
             lineNumber: 31
         },
         __self: this
     }, "Birthday:", /*#__PURE__*/ _reactDefault.default.createElement("input", {
         type: "password",
+=======
+            lineNumber: 34
+        },
+        __self: this
+    }, "Birthday:", /*#__PURE__*/ _reactDefault.default.createElement("input", {
+        type: "text",
+>>>>>>> main
         value: birthday,
         onChange: (e)=>setBirthday(e.target.value)
         ,
         __source: {
             fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/registration-view/registration-view.jsx",
+<<<<<<< HEAD
             lineNumber: 33
+=======
+            lineNumber: 36
+>>>>>>> main
         },
         __self: this
     })), /*#__PURE__*/ _reactDefault.default.createElement("button", {
@@ -23429,10 +23485,24 @@ function RegistrationView(props) {
         onClick: handleSubmit,
         __source: {
             fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/registration-view/registration-view.jsx",
+<<<<<<< HEAD
             lineNumber: 35
         },
         __self: this
     }, "Submit")));
+=======
+            lineNumber: 38
+        },
+        __self: this
+    }, "Submit"), /*#__PURE__*/ _reactDefault.default.createElement("a", {
+        onClick: handleClick,
+        __source: {
+            fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/registration-view/registration-view.jsx",
+            lineNumber: 39
+        },
+        __self: this
+    }, "Create an account!")));
+>>>>>>> main
 }
 _s(RegistrationView, "tdA1KK8yaZidqYo0wscqshHt/KE=");
 _c = RegistrationView;
@@ -23614,6 +23684,7 @@ function LoginView(props) {
     _s();
     const [username, setUsername] = _react.useState('');
     const [password, setPassword] = _react.useState('');
+<<<<<<< HEAD
     const handleSubmit = ()=>{
         console.log(username, password);
         /* Send a request to the server for authentication */ /* then call props.onLoggedIn(username) */ props.onLoggedIn(username);
@@ -23622,12 +23693,30 @@ function LoginView(props) {
         __source: {
             fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/login-view/login-view.jsx",
             lineNumber: 15
+=======
+    const handleSubmit = (e)=>{
+        e.preventDefault(e);
+        console.log(username, password);
+        /* Send a request to the server for authentication */ /* then call props.onLoggedIn(username) */ props.onLoggedIn(username);
+    };
+    const handleClick = ()=>{
+        props.toggleDisplayRegister();
+    };
+    return(/*#__PURE__*/ _reactDefault.default.createElement("form", {
+        __source: {
+            fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/login-view/login-view.jsx",
+            lineNumber: 20
+>>>>>>> main
         },
         __self: this
     }, /*#__PURE__*/ _reactDefault.default.createElement("label", {
         __source: {
             fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/login-view/login-view.jsx",
+<<<<<<< HEAD
             lineNumber: 16
+=======
+            lineNumber: 21
+>>>>>>> main
         },
         __self: this
     }, "Username:", /*#__PURE__*/ _reactDefault.default.createElement("input", {
@@ -23637,13 +23726,21 @@ function LoginView(props) {
         ,
         __source: {
             fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/login-view/login-view.jsx",
+<<<<<<< HEAD
             lineNumber: 18
+=======
+            lineNumber: 23
+>>>>>>> main
         },
         __self: this
     })), /*#__PURE__*/ _reactDefault.default.createElement("label", {
         __source: {
             fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/login-view/login-view.jsx",
+<<<<<<< HEAD
             lineNumber: 20
+=======
+            lineNumber: 25
+>>>>>>> main
         },
         __self: this
     }, "Password:", /*#__PURE__*/ _reactDefault.default.createElement("input", {
@@ -23653,7 +23750,11 @@ function LoginView(props) {
         ,
         __source: {
             fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/login-view/login-view.jsx",
+<<<<<<< HEAD
             lineNumber: 22
+=======
+            lineNumber: 27
+>>>>>>> main
         },
         __self: this
     })), /*#__PURE__*/ _reactDefault.default.createElement("button", {
@@ -23661,10 +23762,24 @@ function LoginView(props) {
         onClick: handleSubmit,
         __source: {
             fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/login-view/login-view.jsx",
+<<<<<<< HEAD
             lineNumber: 24
         },
         __self: this
     }, "Submit")));
+=======
+            lineNumber: 29
+        },
+        __self: this
+    }, "Submit"), /*#__PURE__*/ _reactDefault.default.createElement("a", {
+        onClick: handleClick,
+        __source: {
+            fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/login-view/login-view.jsx",
+            lineNumber: 30
+        },
+        __self: this
+    }, "Already a User?")));
+>>>>>>> main
 }
 _s(LoginView, "wuQOK7xaXdVz4RMrZQhWbI751Oc=");
 _c = LoginView;

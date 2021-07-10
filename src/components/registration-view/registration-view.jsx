@@ -7,12 +7,15 @@ export function RegistrationView(props) {
   const [birthday, setBirthday] = useState('');
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(e);
     console.log(username, password, email, birthday);
-    /* Send a request to the server for authentication */
-    /* then call props.onLoggedIn(username) */
-    props.onRegister(username);
+    props.onLoggedIn(username);
+
   };
+
+  const handleClick = () => {
+    props.toggleDisplayRegister();
+  }
 
   return (
     <form>
@@ -26,13 +29,14 @@ export function RegistrationView(props) {
       </label>
       <label>
         Email:
-        <input type="password" value={email} onChange={e => setEmail(e.target.value)} />
+        <input type="text" value={email} onChange={e => setEmail(e.target.value)} />
       </label>
       <label>
         Birthday:
-        <input type="password" value={birthday} onChange={e => setBirthday(e.target.value)} />
+        <input type="text" value={birthday} onChange={e => setBirthday(e.target.value)} />
       </label>
       <button type="submit" onClick={handleSubmit}>Submit</button>
+      <a onClick={handleClick}>Create an account!</a>
     </form>
   );
 }

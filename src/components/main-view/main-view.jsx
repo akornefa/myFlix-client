@@ -16,8 +16,9 @@ export class MainView extends React.Component {
       movies: [],
       selectedMovie: null,
       user: null,
-      register: true
+      shouldDisplayRegister: false
     };
+    this.toggleDisplayRegister = this.toggleDisplayRegister.bind(this);
   }
 
   componentDidMount() {
@@ -44,18 +45,20 @@ export class MainView extends React.Component {
     });
   }
 
-  onRegister(register) {
+  toggleDisplayRegister() {
     this.setState({
-      register
+      shouldDisplayRegister: !this.state.shouldDisplayRegister
     });
   }
 
   render() {
-    const { movies, selectedMovie, user, register } = this.state;
+    const { movies, selectedMovie, user, shouldDisplayRegister } = this.state;
+    if (!user && shouldDisplayRegister) return <RegistrationView toggleDisplayRegister={this.toggleDisplayRegister}
+      onLoggedIn={user => this.onLoggedIn(user)} />;
+    if (!user && !shouldDisplayRegister) return <LoginView toggleDisplayRegister={this.toggleDisplayRegister}
+      onLoggedIn={user => this.onLoggedIn(user)} />;
 
-    if (register) return <RegistrationView onRegister={register => this.onRegister(register)} />;
 
-    if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
 
     if (movies.length === 0) return <div className="main-view" />;
 
@@ -71,4 +74,5 @@ export class MainView extends React.Component {
     );
   }
 }
+
 
