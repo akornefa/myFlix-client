@@ -1,8 +1,11 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
+
 import Jumbotron from 'react-bootstrap/Jumbotron';
-import FigureImage from 'react-bootstrap/FigureImage';
 import Figure from 'react-bootstrap/Figure';
+import FigureImage from 'react-bootstrap/FigureImage';
+
+import './movie-view.scss'
 
 export class MovieView extends React.Component {
 

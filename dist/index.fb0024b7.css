@@ -1,0 +1,27 @@
+.movie-card {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.movie-title {
+  padding-top: 10px;
+  font-weight: bolder;
+}
+
+.label {
+  font-weight: bolder;
+}
+
+.movie-poster {
+  padding-left: 30px;
+}
+
+.movie-director {
+  padding-bottom: 10px;
+}
+
+
+
+.my-flix {
+  color: steelblue;
+}
+/*# sourceMappingURL=index.fb0024b7.css.map */
