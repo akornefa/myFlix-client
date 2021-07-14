@@ -10,6 +10,7 @@ import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 
+import './main-view.scss';
 
 export class MainView extends React.Component {
 
@@ -74,8 +75,8 @@ export class MainView extends React.Component {
             </Col>
           )
           : movies.map(movie => (
-            <Col md={3}>
-              <MovieCard key={movie._id} movie={movie} onMovieClick={(newSelectedMovie) => { this.setSelectedMovie(newSelectedMovie) }} />
+            <Col md={3} key={movie._id}>
+              <MovieCard movie={movie} onMovieClick={(newSelectedMovie) => { this.setSelectedMovie(newSelectedMovie) }} />
             </Col>
           ))
         }
