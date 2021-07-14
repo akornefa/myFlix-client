@@ -57,17 +57,17 @@ export class MainView extends React.Component {
 
   render() {
     const { movies, selectedMovie, user, shouldDisplayRegister } = this.state;
-    if (!user && shouldDisplayRegister) return (<Row className="justify-content-md-center"><Col md={8}><RegistrationView toggleDisplayRegister={this.toggleDisplayRegister}
+    if (!user && shouldDisplayRegister) return (<Row className='justify-content-md-center'><Col md={8}><RegistrationView toggleDisplayRegister={this.toggleDisplayRegister}
       onLoggedIn={user => this.onLoggedIn(user)} /></Col></Row>);
-    if (!user && !shouldDisplayRegister) return (<Row className="justify-content-md-center"><Col md={8}><LoginView toggleDisplayRegister={this.toggleDisplayRegister}
+    if (!user && !shouldDisplayRegister) return (<Row className='justify-content-md-center'><Col md={8}><LoginView toggleDisplayRegister={this.toggleDisplayRegister}
       onLoggedIn={user => this.onLoggedIn(user)} /></Col></Row>);
 
 
 
-    if (movies.length === 0) return <div className="main-view" />;
+    if (movies.length === 0) return <div className='main-view' />;
 
     return (
-      <Row className="main-view justify-content-md-center">
+      <Row className='main-view justify-content-md-center'>
         {selectedMovie
           ? (
             <Col md={8}>

@@ -24,21 +24,21 @@ export class MovieView extends React.Component {
                 src={movie.ImagePath}
               />
             </div>
-            <div className="movie-title">
-              <span className="label">Title: </span>
-              <span className="value">{movie.Title}</span>
+            <div className='movie-title'>
+              <span className='label'>Title: </span>
+              <span className='value'>{movie.Title}</span>
             </div>
-            <div className="movie-description">
-              <span className="label">Description: </span>
-              <span className="value">{movie.Description}</span>
+            <div className='movie-description'>
+              <span className='label'>Description: </span>
+              <span className='value'>{movie.Description}</span>
             </div>
-            <div className="movie-genre">
-              <span className="label">Genre: </span>
-              <span className="value">{movie.Genre.Name}</span>
+            <div className='movie-genre'>
+              <span className='label'>Genre: </span>
+              <span className='value'>{movie.Genre.Name}</span>
             </div>
-            <div className="movie-director">
-              <span className="label">Director: </span>
-              <span className="value">{movie.Director.Name}</span>
+            <div className='movie-director'>
+              <span className='label'>Director: </span>
+              <span className='value'>{movie.Director.Name}</span>
             </div>
             <Button variant='secondary' size='sm' onClick={() => { onBackClick(null); }}>Back</Button>
           </div>
