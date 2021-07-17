@@ -21871,6 +21871,8 @@ var _row = require("react-bootstrap/Row");
 var _rowDefault = parcelHelpers.interopDefault(_row);
 var _col = require("react-bootstrap/Col");
 var _colDefault = parcelHelpers.interopDefault(_col);
+var _button = require("react-bootstrap/Button");
+var _buttonDefault = parcelHelpers.interopDefault(_button);
 var _registrationView = require("../registration-view/registration-view");
 var _loginView = require("../login-view/login-view");
 var _movieCard = require("../movie-card/movie-card");
@@ -21929,20 +21931,27 @@ class MainView extends _reactDefault.default.Component {
             shouldDisplayRegister: !this.state.shouldDisplayRegister
         });
     }
+    onLoggedOut() {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        this.setState({
+            user: null
+        });
+    }
     render() {
         const { movies , selectedMovie , user , shouldDisplayRegister  } = this.state;
         if (!user && shouldDisplayRegister) return(/*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
             className: "justify-content-md-center",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 78
+                lineNumber: 87
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
             md: 8,
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 78
+                lineNumber: 87
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_registrationView.RegistrationView, {
@@ -21951,7 +21960,7 @@ class MainView extends _reactDefault.default.Component {
             ,
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 78
+                lineNumber: 87
             },
             __self: this
         }))));
@@ -21959,14 +21968,14 @@ class MainView extends _reactDefault.default.Component {
             className: "justify-content-md-center",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 80
+                lineNumber: 89
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
             md: 8,
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 80
+                lineNumber: 89
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_loginView.LoginView, {
@@ -21975,7 +21984,7 @@ class MainView extends _reactDefault.default.Component {
             ,
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 80
+                lineNumber: 89
             },
             __self: this
         }))));
@@ -21983,22 +21992,57 @@ class MainView extends _reactDefault.default.Component {
             className: "main-view",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 85
+                lineNumber: 92
             },
             __self: this
         }));
-        return(/*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
+        return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
+            __source: {
+                fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
+                lineNumber: 97
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
+            className: "logoutButtonRow",
+            __source: {
+                fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
+                lineNumber: 98
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
+            md: {
+                span: 3,
+                offset: 11
+            },
+            __source: {
+                fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
+                lineNumber: 99
+            },
+            __self: this
+        }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
+            className: "logoutButton",
+            variant: "secondary",
+            size: "sm",
+            onClick: ()=>{
+                this.onLoggedOut();
+            },
+            __source: {
+                fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
+                lineNumber: 100
+            },
+            __self: this
+        }, "Logout"))), /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
             className: "main-view justify-content-md-center",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 88
+                lineNumber: 103
             },
             __self: this
         }, selectedMovie ? /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
             md: 8,
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 91
+                lineNumber: 108
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_movieView.MovieView, {
@@ -22008,7 +22052,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 92
+                lineNumber: 109
             },
             __self: this
         })) : movies.map((movie)=>/*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
@@ -22016,7 +22060,7 @@ class MainView extends _reactDefault.default.Component {
                 key: movie._id,
                 __source: {
                     fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                    lineNumber: 96
+                    lineNumber: 113
                 },
                 __self: this
             }, /*#__PURE__*/ _reactDefault.default.createElement(_movieCard.MovieCard, {
@@ -22026,11 +22070,11 @@ class MainView extends _reactDefault.default.Component {
                 },
                 __source: {
                     fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                    lineNumber: 97
+                    lineNumber: 114
                 },
                 __self: this
             }))
-        )));
+        ))));
     }
 }
 
@@ -22039,7 +22083,7 @@ class MainView extends _reactDefault.default.Component {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"3b2NM","axios":"7rA65","../movie-card/movie-card":"2Eu0x","../movie-view/movie-view":"3zV6w","@parcel/transformer-js/src/esmodule-helpers.js":"367CR","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","../login-view/login-view":"6uQed","../registration-view/registration-view":"7KTIn","react-bootstrap/Row":"3fzwD","react-bootstrap/Col":"2D0r8","./main-view.scss":"5lg2N"}],"7rA65":[function(require,module,exports) {
+},{"react":"3b2NM","axios":"7rA65","../movie-card/movie-card":"2Eu0x","../movie-view/movie-view":"3zV6w","@parcel/transformer-js/src/esmodule-helpers.js":"367CR","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","../login-view/login-view":"6uQed","../registration-view/registration-view":"7KTIn","react-bootstrap/Row":"3fzwD","react-bootstrap/Col":"2D0r8","./main-view.scss":"5lg2N","react-bootstrap/Button":"1ru0l"}],"7rA65":[function(require,module,exports) {
 module.exports = require('./lib/axios');
 
 },{"./lib/axios":"4qfhW"}],"4qfhW":[function(require,module,exports) {
