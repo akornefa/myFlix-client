@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Figure from 'react-bootstrap/Figure';
-import FigureImage from 'react-bootstrap/FigureImage';
+
 
 import './movie-view.scss'
 
@@ -12,7 +12,7 @@ export class MovieView extends React.Component {
 
 
   render() {
-    const { movie, onBackClick } = this.props;
+    const { movie, onBackClick, addFavorite } = this.props;
     return (
       <Jumbotron>
         <Figure>
@@ -51,8 +51,9 @@ export class MovieView extends React.Component {
               </span>
               <span className='value'>{movie.Director.Name}</span>
             </div>
-
-            <Button variant='secondary' size='sm' onClick={() => { onBackClick(null); }}>Back</Button>
+            <Button size='md' variant='light' block onClick={() => { addFavorite(movie._id) }}>Add To Favorites</Button>
+            <br />
+            <Button variant='secondary' size='sm' onClick={() => { onBackClick(null); }} block>Back</Button>
           </div>
         </Figure>
       </Jumbotron>
