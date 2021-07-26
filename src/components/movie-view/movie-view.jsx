@@ -51,7 +51,10 @@ export class MovieView extends React.Component {
               </span>
               <span className='value'>{movie.Director.Name}</span>
             </div>
-            <Button size='md' variant='light' block onClick={() => { addFavorite(movie._id) }}>Add To Favorites</Button>
+            {true ?
+              <Button size='md' variant='light' block onClick={() => { deleteFavorite(movie._id) }}> Delete Favorite </Button> :
+              <Button size='md' variant='light' block onClick={() => { addFavorite(movie._id) }}>Add To Favorites</Button>
+            }
             <br />
             <Button variant='secondary' size='sm' onClick={() => { onBackClick(null); }} block>Back</Button>
           </div>
