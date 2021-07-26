@@ -31,6 +31,9 @@ export class MainView extends React.Component {
       shouldDisplayRegister: false
     };
     this.toggleDisplayRegister = this.toggleDisplayRegister.bind(this);
+    this.onUpdate = this.onUpdate.bind(this);
+    this.addFavorite = this.addFavorite.bind(this);
+    this.deleteFavorite = this.deleteFavorite.bind(this);
   }
 
   componentDidMount() {
@@ -93,6 +96,22 @@ export class MainView extends React.Component {
     })
       .then(response => {
         console.log(response);
+        this.onUpdate(response.data)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  deleteFavorite(movieid) {
+    let token = localStorage.getItem('token');
+    let user = JSON.parse(localStorage.getItem('user'));
+
+    axios.delete(`https://myflix-app-akornefa.herokuapp.com/users/${user.Username}/movies/${movieid}`, {}, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(response => {
+        this.onUpdate(response.data)
       })
       .catch(function (error) {
         console.log(error);
@@ -162,7 +181,7 @@ export class MainView extends React.Component {
             if (movies.length === 0) return <div className='main-view' />;
             return <Col md={8}>
               <MovieView movie={movies.find(m => m._id === match.params.movieId)} onBackClick={() => history.goBack()}
-                addFavorite={this.addFavorite} />
+                addFavorite={this.addFavorite} deleteFavorite={this.deleteFavorite} />
             </Col>
           }} />
 
@@ -200,7 +219,7 @@ export class MainView extends React.Component {
             if (movies.length === 0) return <div className="main-view" />;
             return <Col md={8}>
               <ProfileView onLoggedIn={user => this.onLoggedIn(user)}
-                movies={movies} user={user}
+                movies={movies.filter((movie) => user.FavoriteMovies.includes(movie._id))} user={user}
                 onBackClick={() => history.goBack()} onUpdate={data => this.onUpdate(data)} />
             </Col>
           }} />
@@ -212,5 +231,6 @@ export class MainView extends React.Component {
 
   }
 }
+
 
 

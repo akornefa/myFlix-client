@@ -21893,6 +21893,9 @@ class MainView extends _reactDefault.default.Component {
             shouldDisplayRegister: false
         };
         this.toggleDisplayRegister = this.toggleDisplayRegister.bind(this);
+        this.onUpdate = this.onUpdate.bind(this);
+        this.addFavorite = this.addFavorite.bind(this);
+        this.deleteFavorite = this.deleteFavorite.bind(this);
     }
     componentDidMount() {
         let accessToken = localStorage.getItem('token');
@@ -21948,6 +21951,21 @@ class MainView extends _reactDefault.default.Component {
             }
         }).then((response)=>{
             console.log(response);
+            this.onUpdate(response.data);
+        }).catch(function(error) {
+            console.log(error);
+        });
+    }
+    deleteFavorite(movieid) {
+        let token = localStorage.getItem('token');
+        let user = JSON.parse(localStorage.getItem('user'));
+        _axiosDefault.default.delete(`https://myflix-app-akornefa.herokuapp.com/users/${user.Username}/movies/${movieid}`, {
+        }, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response)=>{
+            this.onUpdate(response.data);
         }).catch(function(error) {
             console.log(error);
         });
@@ -21965,14 +21983,14 @@ class MainView extends _reactDefault.default.Component {
             className: "justify-content-md-center",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 112
+                lineNumber: 131
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
             md: 8,
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 112
+                lineNumber: 131
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_registrationView.RegistrationView, {
@@ -21981,7 +21999,7 @@ class MainView extends _reactDefault.default.Component {
             ,
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 112
+                lineNumber: 131
             },
             __self: this
         }))));
@@ -21989,14 +22007,14 @@ class MainView extends _reactDefault.default.Component {
             className: "justify-content-md-center",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 114
+                lineNumber: 133
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
             md: 8,
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 114
+                lineNumber: 133
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_loginView.LoginView, {
@@ -22005,68 +22023,68 @@ class MainView extends _reactDefault.default.Component {
             ,
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 114
+                lineNumber: 133
             },
             __self: this
         }))));
         return(/*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.BrowserRouter, {
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 118
+                lineNumber: 137
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
             className: "logoutButtonRow",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 119
+                lineNumber: 138
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_navbarDefault.default, {
             className: "order-3",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 120
+                lineNumber: 139
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_navbarDefault.default.Brand, {
             href: "/",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 121
+                lineNumber: 140
             },
             __self: this
         }, "My Flix!"), /*#__PURE__*/ _reactDefault.default.createElement(_navbarDefault.default.Toggle, {
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 122
+                lineNumber: 141
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_navbarDefault.default.Collapse, {
             className: "justify-content-end",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 123
+                lineNumber: 142
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_navbarDefault.default.Text, {
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 124
+                lineNumber: 143
             },
             __self: this
         }, "Signed in as: ", /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
             to: `/users/${user.Username}`,
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 125
+                lineNumber: 144
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement("span", {
             className: "value",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 125
+                lineNumber: 144
             },
             __self: this
         }, user.Username))))), /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
@@ -22076,7 +22094,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 129
+                lineNumber: 148
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
@@ -22088,14 +22106,14 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 130
+                lineNumber: 149
             },
             __self: this
         }, "Logout"))), /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
             className: "main-view justify-content-md-center",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 134
+                lineNumber: 153
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -22119,7 +22137,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 136
+                lineNumber: 155
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -22132,7 +22150,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 150
+                lineNumber: 169
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -22152,12 +22170,13 @@ class MainView extends _reactDefault.default.Component {
                     ),
                     onBackClick: ()=>history.goBack()
                     ,
-                    addFavorite: this.addFavorite
+                    addFavorite: this.addFavorite,
+                    deleteFavorite: this.deleteFavorite
                 })));
             },
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 157
+                lineNumber: 176
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -22180,7 +22199,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 169
+                lineNumber: 188
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -22203,7 +22222,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 181
+                lineNumber: 200
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -22221,7 +22240,8 @@ class MainView extends _reactDefault.default.Component {
                 }, /*#__PURE__*/ _reactDefault.default.createElement(_profileView.ProfileView, {
                     onLoggedIn: (user1)=>this.onLoggedIn(user1)
                     ,
-                    movies: movies,
+                    movies: movies.filter((movie)=>user.FavoriteMovies.includes(movie._id)
+                    ),
                     user: user,
                     onBackClick: ()=>history.goBack()
                     ,
@@ -22230,7 +22250,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 195
+                lineNumber: 214
             },
             __self: this
         }))));
@@ -27624,17 +27644,17 @@ class MovieView extends _reactDefault.default.Component {
             variant: "light",
             block: true,
             onClick: ()=>{
-                addFavorite(movie._id);
+                deleteFavorite(movie._id);
             },
-            __source: {
-                fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 54
-            },
-            __self: this
-        }, "Add To Favorites"), /*#__PURE__*/ _reactDefault.default.createElement("br", {
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/movie-view/movie-view.jsx",
                 lineNumber: 55
+            },
+            __self: this
+        }, " Delete Favorite "), /*#__PURE__*/ _reactDefault.default.createElement("br", {
+            __source: {
+                fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/movie-view/movie-view.jsx",
+                lineNumber: 58
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
@@ -27646,7 +27666,7 @@ class MovieView extends _reactDefault.default.Component {
             block: true,
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 56
+                lineNumber: 59
             },
             __self: this
         }, "Back")))));
@@ -31350,6 +31370,9 @@ var _rowDefault = parcelHelpers.interopDefault(_row);
 var _reactRouterDom = require("react-router-dom");
 var _jumbotron = require("react-bootstrap/Jumbotron");
 var _jumbotronDefault = parcelHelpers.interopDefault(_jumbotron);
+var _movieCard = require("../movie-card/movie-card");
+var _col = require("react-bootstrap/Col");
+var _colDefault = parcelHelpers.interopDefault(_col);
 class ProfileView extends _reactDefault.default.Component {
     constructor(props){
         super(props);
@@ -31392,48 +31415,48 @@ class ProfileView extends _reactDefault.default.Component {
         });
     }
     render() {
-        const { user  } = this.props;
+        const { user , movies  } = this.props;
         return(/*#__PURE__*/ _reactDefault.default.createElement("div", {
-            __source: {
-                fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/profile-view/profile-view.jsx",
-                lineNumber: 65
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement("h1", {
-            __source: {
-                fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/profile-view/profile-view.jsx",
-                lineNumber: 66
-            },
-            __self: this
-        }, "User Information"), /*#__PURE__*/ _reactDefault.default.createElement("p", {
-            __source: {
-                fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/profile-view/profile-view.jsx",
-                lineNumber: 67
-            },
-            __self: this
-        }, "Username: ", user.Username), /*#__PURE__*/ _reactDefault.default.createElement("p", {
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/profile-view/profile-view.jsx",
                 lineNumber: 68
             },
             __self: this
-        }, "Birthday: ", user.Birthday), /*#__PURE__*/ _reactDefault.default.createElement("p", {
+        }, /*#__PURE__*/ _reactDefault.default.createElement("h1", {
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/profile-view/profile-view.jsx",
                 lineNumber: 69
+            },
+            __self: this
+        }, "User Information"), /*#__PURE__*/ _reactDefault.default.createElement("p", {
+            __source: {
+                fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/profile-view/profile-view.jsx",
+                lineNumber: 70
+            },
+            __self: this
+        }, "Username: ", user.Username), /*#__PURE__*/ _reactDefault.default.createElement("p", {
+            __source: {
+                fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/profile-view/profile-view.jsx",
+                lineNumber: 71
+            },
+            __self: this
+        }, "Birthday: ", user.Birthday), /*#__PURE__*/ _reactDefault.default.createElement("p", {
+            __source: {
+                fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/profile-view/profile-view.jsx",
+                lineNumber: 72
             },
             __self: this
         }, "Email: ", user.Email), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default, {
             onSubmit: this.handleUpdate,
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/profile-view/profile-view.jsx",
-                lineNumber: 71
+                lineNumber: 74
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement("h1", {
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/profile-view/profile-view.jsx",
-                lineNumber: 72
+                lineNumber: 75
             },
             __self: this
         }, "Update information"), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Group, {
@@ -31441,13 +31464,13 @@ class ProfileView extends _reactDefault.default.Component {
             controlId: "Username",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/profile-view/profile-view.jsx",
-                lineNumber: 73
+                lineNumber: 76
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/profile-view/profile-view.jsx",
-                lineNumber: 74
+                lineNumber: 77
             },
             __self: this
         }, "Username: "), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control, {
@@ -31459,7 +31482,7 @@ class ProfileView extends _reactDefault.default.Component {
             ,
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/profile-view/profile-view.jsx",
-                lineNumber: 75
+                lineNumber: 78
             },
             __self: this
         })), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Group, {
@@ -31467,13 +31490,13 @@ class ProfileView extends _reactDefault.default.Component {
             controlId: "formBasicPassword",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/profile-view/profile-view.jsx",
-                lineNumber: 84
+                lineNumber: 87
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/profile-view/profile-view.jsx",
-                lineNumber: 85
+                lineNumber: 88
             },
             __self: this
         }, "Password: "), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control, {
@@ -31485,7 +31508,7 @@ class ProfileView extends _reactDefault.default.Component {
             ,
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/profile-view/profile-view.jsx",
-                lineNumber: 86
+                lineNumber: 89
             },
             __self: this
         })), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Group, {
@@ -31493,13 +31516,13 @@ class ProfileView extends _reactDefault.default.Component {
             controlId: "formBasicEmail",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/profile-view/profile-view.jsx",
-                lineNumber: 95
+                lineNumber: 98
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/profile-view/profile-view.jsx",
-                lineNumber: 96
+                lineNumber: 99
             },
             __self: this
         }, "Email address: "), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control, {
@@ -31511,14 +31534,14 @@ class ProfileView extends _reactDefault.default.Component {
             ,
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/profile-view/profile-view.jsx",
-                lineNumber: 97
+                lineNumber: 100
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Text, {
             className: "text-muted",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/profile-view/profile-view.jsx",
-                lineNumber: 104
+                lineNumber: 107
             },
             __self: this
         }, "We'll never share your email with anyone else.")), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Group, {
@@ -31526,13 +31549,13 @@ class ProfileView extends _reactDefault.default.Component {
             controlId: "Birthday",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/profile-view/profile-view.jsx",
-                lineNumber: 109
+                lineNumber: 112
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Label, {
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/profile-view/profile-view.jsx",
-                lineNumber: 110
+                lineNumber: 113
             },
             __self: this
         }, "Birthdate: "), /*#__PURE__*/ _reactDefault.default.createElement(_formDefault.default.Control, {
@@ -31544,7 +31567,7 @@ class ProfileView extends _reactDefault.default.Component {
             ,
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/profile-view/profile-view.jsx",
-                lineNumber: 111
+                lineNumber: 114
             },
             __self: this
         })), /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
@@ -31554,7 +31577,7 @@ class ProfileView extends _reactDefault.default.Component {
             size: "lg",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/profile-view/profile-view.jsx",
-                lineNumber: 119
+                lineNumber: 122
             },
             __self: this
         }, "Save Changes"), /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
@@ -31564,72 +31587,38 @@ class ProfileView extends _reactDefault.default.Component {
             size: "lg",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/profile-view/profile-view.jsx",
-                lineNumber: 127
+                lineNumber: 130
             },
             __self: this
         }, "Delete Account")), /*#__PURE__*/ _reactDefault.default.createElement("br", {
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/profile-view/profile-view.jsx",
-                lineNumber: 135
+                lineNumber: 138
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement("h1", {
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/profile-view/profile-view.jsx",
-                lineNumber: 137
-            },
-            __self: this
-        }, "Favorite Movies: "), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default, {
-            style: {
-                width: '18rem'
-            },
-            __source: {
-                fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/profile-view/profile-view.jsx",
-                lineNumber: 138
-            },
-            __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Img, {
-            variant: "top",
-            src: "holder.js/100px180",
-            __source: {
-                fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/profile-view/profile-view.jsx",
-                lineNumber: 139
-            },
-            __self: this
-        }), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Body, {
-            __source: {
-                fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/profile-view/profile-view.jsx",
                 lineNumber: 140
             },
             __self: this
-        }, /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Title, {
-            __source: {
-                fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/profile-view/profile-view.jsx",
-                lineNumber: 141
-            },
-            __self: this
-        }, "Movie Title"), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Text, {
-            __source: {
-                fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/profile-view/profile-view.jsx",
-                lineNumber: 142
-            },
-            __self: this
-        }, user.FavoriteMovies), /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
-            variant: "primary",
-            block: true,
-            __source: {
-                fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/profile-view/profile-view.jsx",
-                lineNumber: 145
-            },
-            __self: this
-        }, "See Movie"), /*#__PURE__*/ _reactDefault.default.createElement(_cardDefault.default.Link, {
-            href: "#",
-            __source: {
-                fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/profile-view/profile-view.jsx",
-                lineNumber: 149
-            },
-            __self: this
-        }, "Remove Movie")))));
+        }, "Favorite Movies: "), movies.map((m)=>/*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
+                md: 3,
+                key: m._id,
+                __source: {
+                    fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/profile-view/profile-view.jsx",
+                    lineNumber: 142
+                },
+                __self: this
+            }, /*#__PURE__*/ _reactDefault.default.createElement(_movieCard.MovieCard, {
+                movie: m,
+                __source: {
+                    fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/profile-view/profile-view.jsx",
+                    lineNumber: 143
+                },
+                __self: this
+            }))
+        )));
     }
 }
 
@@ -31638,7 +31627,7 @@ class ProfileView extends _reactDefault.default.Component {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"3b2NM","react-bootstrap/Button":"1ru0l","@parcel/transformer-js/src/esmodule-helpers.js":"367CR","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap/Form":"6A5ko","axios":"7rA65","react-bootstrap/Card":"1CZWQ","react-bootstrap/Row":"3fzwD","react-router-dom":"1PMSK","react-bootstrap/Jumbotron":"1fO3T"}],"3gZl0":[function() {},{}],"3Mt3t":[function(require,module,exports) {
+},{"react":"3b2NM","react-bootstrap/Button":"1ru0l","@parcel/transformer-js/src/esmodule-helpers.js":"367CR","../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"4Jj4f","react-bootstrap/Form":"6A5ko","axios":"7rA65","react-bootstrap/Card":"1CZWQ","react-bootstrap/Row":"3fzwD","react-router-dom":"1PMSK","react-bootstrap/Jumbotron":"1fO3T","../movie-card/movie-card":"2Eu0x","react-bootstrap/Col":"2D0r8"}],"3gZl0":[function() {},{}],"3Mt3t":[function(require,module,exports) {
 "use strict";
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 exports.__esModule = true;
