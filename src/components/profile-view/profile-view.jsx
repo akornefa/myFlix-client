@@ -6,6 +6,9 @@ import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import { Link } from "react-router-dom";
 import Jumbotron from 'react-bootstrap/Jumbotron';
+import { MovieCard } from '../movie-card/movie-card'
+import Col from 'react-bootstrap/Col';
+
 
 
 
@@ -59,7 +62,7 @@ export class ProfileView extends React.Component {
 
   render() {
 
-    const { user } = this.props;
+    const { user, movies } = this.props;
 
     return (
       <div>
@@ -135,20 +138,11 @@ export class ProfileView extends React.Component {
         <br />
 
         <h1>Favorite Movies: </h1>
-        <Card style={{ width: '18rem' }}>
-          <Card.Img variant="top" src="holder.js/100px180" />
-          <Card.Body>
-            <Card.Title>Movie Title</Card.Title>
-            <Card.Text>
-              {user.FavoriteMovies}
-            </Card.Text>
-            <Button
-              variant="primary"
-              block
-            >See Movie</Button>
-            <Card.Link href="#">Remove Movie</Card.Link>
-          </Card.Body>
-        </Card>
+        {movies.map(m => (
+          <Col md={3} key={m._id}>
+            <MovieCard movie={m} />
+          </Col>))}
+
       </div>
     )
   }
