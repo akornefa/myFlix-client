@@ -27488,7 +27488,7 @@ var _figureDefault = parcelHelpers.interopDefault(_figure);
 var _movieViewScss = require("./movie-view.scss");
 class MovieView extends _reactDefault.default.Component {
     render() {
-        const { movie , onBackClick , addFavorite  } = this.props;
+        const { movie , onBackClick , addFavorite , deleteFavorite  } = this.props;
         return(/*#__PURE__*/ _reactDefault.default.createElement(_jumbotronDefault.default, {
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/movie-view/movie-view.jsx",
@@ -27648,13 +27648,25 @@ class MovieView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/movie-view/movie-view.jsx",
+                lineNumber: 54
+            },
+            __self: this
+        }, " Delete Favorite"), /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
+            size: "md",
+            variant: "light",
+            block: true,
+            onClick: ()=>{
+                addFavorite(movie._id);
+            },
+            __source: {
+                fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/movie-view/movie-view.jsx",
                 lineNumber: 55
             },
             __self: this
-        }, " Delete Favorite "), /*#__PURE__*/ _reactDefault.default.createElement("br", {
+        }, "Add To Favorites"), /*#__PURE__*/ _reactDefault.default.createElement("br", {
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 58
+                lineNumber: 57
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
@@ -27666,7 +27678,7 @@ class MovieView extends _reactDefault.default.Component {
             block: true,
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 59
+                lineNumber: 58
             },
             __self: this
         }, "Back")))));
