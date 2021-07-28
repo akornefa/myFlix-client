@@ -20,6 +20,10 @@ export class ProfileView extends React.Component {
       Password: '',
       Birthday: '',
       Email: '',
+      UsernameError: '',
+      EmailError: '',
+      PasswordError: '',
+      BirthdayError: ''
     }
     this.handleUpdate = this.handleUpdate.bind(this)
   }
@@ -60,9 +64,40 @@ export class ProfileView extends React.Component {
     })
   }
 
+  formValidation() {
+    let UsernameError = {};
+    let EmailError = {};
+    let PasswordError = {};
+    let BirthdayError = {};
+    let isValid = true;
+    if (this.state.Username.trim().length < 5) {
+      UsernameError.usernameShort = 'Username is required, must be alphanumeric and should to be at least 5 characters long';
+      isValid = false;
+    }
+    if (this.state.Password === '') {
+      PasswordError.passwordMissing = 'Password is required';
+      isValid = false;
+    }
+    if (!(this.state.Email && this.state.Email.includes('.') && this.state.Email.includes('@'))) {
+      EmailError.emailNotEmail = 'A valid email address is required.';
+      isValid = false;
+    }
+    if (this.state.Birthday === '') {
+      BirthdayError.birthdayEmpty = 'Please enter your birthday.';
+      isValid = false;
+    }
+    this.setState({
+      UsernameError: UsernameError,
+      PasswordError: PasswordError,
+      EmailError: EmailError,
+      BirthdayError: BirthdayError,
+    })
+    return isValid;
+  };
+
   render() {
 
-    const { user, movies } = this.props;
+    const { user, movies, deleteUser } = this.props;
 
     return (
       <div>
@@ -131,18 +166,21 @@ export class ProfileView extends React.Component {
             variant="danger"
             type="submit"
             block
-            size='lg'>
+            size='lg'
+            onClick={() => { deleteUser() }}
+          >
             Delete Account
           </Button>
         </Form>
         <br />
 
         <h1>Favorite Movies: </h1>
-        {movies.map(m => (
-          <Col md={3} key={m._id}>
-            <MovieCard movie={m} />
-          </Col>))}
-
+        <Row>
+          {movies.map(m => (
+            <Col md={4} key={m._id}>
+              <MovieCard movie={m} />
+            </Col>))}
+        </Row>
       </div>
     )
   }
