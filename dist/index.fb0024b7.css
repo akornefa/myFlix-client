@@ -12,15 +12,26 @@
 }
 
 .movie-poster {
-  padding-left: 30px;
+  padding-left: 90px;
 }
 
 .movie-director {
   padding-bottom: 10px;
 }
 
+.directorButton {
+  padding-left: 0;
+}
+
+.genreButton {
+  padding-left: 0;
+}
 
 
+.logoutButtonRow {
+  width: 945px;
+  padding-top: 10px;
+}
 .my-flix {
   color: steelblue;
 }
