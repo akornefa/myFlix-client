@@ -25,7 +25,8 @@ export class ProfileView extends React.Component {
       PasswordError: '',
       BirthdayError: ''
     }
-    this.handleUpdate = this.handleUpdate.bind(this)
+    this.handleUpdate = this.handleUpdate.bind(this);
+    this.formValidation = this.formValidation.bind(this);
   }
 
 
@@ -35,26 +36,30 @@ export class ProfileView extends React.Component {
     let user = JSON.parse(localStorage.getItem('user'));
     console.log(user.Username);
 
-    axios.put(`https://myflix-app-akornefa.herokuapp.com/users/${user.Username}`, {
-      Username: this.state.Username,
-      Password: this.state.Password,
-      Email: this.state.Email,
-      Birthday: this.state.Birthday
-    },
-      { headers: { Authorization: `Bearer ${token}` } }
-    )
-      .then(response => {
-        const data = response.data;
-        localStorage.setItem('user', data.Username);
-        this.props.onUpdate(data);
-        console.log(data);
-        alert(user.Username + 'has been updated');
+    let setisValid = this.formValidation();
+
+    if (setisValid) {
+      axios.put(`https://myflix-app-akornefa.herokuapp.com/users/${user.Username}`, {
+        Username: this.state.Username,
+        Password: this.state.Password,
+        Email: this.state.Email,
+        Birthday: this.state.Birthday
+      },
+        { headers: { Authorization: `Bearer ${token}` } }
+      )
+        .then(response => {
+          const data = response.data;
+          localStorage.setItem('user', data.Username);
+          this.props.onUpdate(data);
+          console.log(data);
+          alert(user.Username + 'has been updated');
 
 
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
   }
 
   handleChange(e) {
@@ -98,6 +103,7 @@ export class ProfileView extends React.Component {
   render() {
 
     const { user, movies, deleteUser } = this.props;
+    const { UsernameError, EmailError, PasswordError, BirthdayError } = this.state;
 
     return (
       <div>
@@ -117,7 +123,15 @@ export class ProfileView extends React.Component {
               value={this.state.Username}
               onChange={(e) => this.handleChange(e)}
             />
+            {Object.keys(UsernameError).map((key) => {
+              return (
+                <div key={key} style={{ color: "red" }}>
+                  {UsernameError[key]}
+                </div>
+              );
+            })}
           </Form.Group>
+
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Password: </Form.Label>
@@ -128,6 +142,13 @@ export class ProfileView extends React.Component {
               value={this.state.Password}
               onChange={(e) => this.handleChange(e)}
             />
+            {Object.keys(PasswordError).map((key) => {
+              return (
+                <div key={key} style={{ color: "red" }}>
+                  {PasswordError[key]}
+                </div>
+              );
+            })}
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -142,6 +163,13 @@ export class ProfileView extends React.Component {
             <Form.Text className="text-muted">
               We'll never share your email with anyone else.
             </Form.Text>
+            {Object.keys(EmailError).map((key) => {
+              return (
+                <div key={key} style={{ color: "red" }}>
+                  {EmailError[key]}
+                </div>
+              );
+            })}
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="Birthday">
@@ -153,6 +181,13 @@ export class ProfileView extends React.Component {
               value={this.state.Birthday}
               onChange={(e) => this.handleChange(e)}
             />
+            {Object.keys(BirthdayError).map((key) => {
+              return (
+                <div key={key} style={{ color: "red" }}>
+                  {BirthdayError[key]}
+                </div>
+              );
+            })}
           </Form.Group>
           <Button
             variant="primary"
