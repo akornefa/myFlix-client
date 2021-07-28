@@ -34,6 +34,9 @@ export class MainView extends React.Component {
     this.onUpdate = this.onUpdate.bind(this);
     this.addFavorite = this.addFavorite.bind(this);
     this.deleteFavorite = this.deleteFavorite.bind(this);
+    this.deleteUser = this.deleteUser.bind(this);
+    this.onLoggedOut = this.onLoggedOut.bind(this);
+
   }
 
   componentDidMount() {
@@ -97,6 +100,8 @@ export class MainView extends React.Component {
       .then(response => {
         console.log(response);
         this.onUpdate(response.data)
+        const movie = this.state.movies.find((movie) => movie._id === movieid);
+        alert(movie.Title + ' has been added to Favorites!')
       })
       .catch(function (error) {
         console.log(error);
@@ -107,11 +112,29 @@ export class MainView extends React.Component {
     let token = localStorage.getItem('token');
     let user = JSON.parse(localStorage.getItem('user'));
 
-    axios.delete(`https://myflix-app-akornefa.herokuapp.com/users/${user.Username}/movies/${movieid}`, {}, {
+    axios.delete(`https://myflix-app-akornefa.herokuapp.com/users/${user.Username}/movies/${movieid}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(response => {
         this.onUpdate(response.data)
+        const movie = this.state.movies.find((movie) => movie._id === movieid);
+        alert(movie.Title + ' has been deleted.')
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  deleteUser() {
+    let token = localStorage.getItem('token');
+    let user = JSON.parse(localStorage.getItem('user'));
+    axios.delete(`https://myflix-app-akornefa.herokuapp.com/users/${user.Username}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(() => {
+        this.onLoggedOut()
+        window.open(`/`, '_self');
+        alert('Account has been deleted')
       })
       .catch(function (error) {
         console.log(error);
@@ -181,7 +204,8 @@ export class MainView extends React.Component {
             if (movies.length === 0) return <div className='main-view' />;
             return <Col md={8}>
               <MovieView movie={movies.find(m => m._id === match.params.movieId)} onBackClick={() => history.goBack()}
-                addFavorite={this.addFavorite} deleteFavorite={this.deleteFavorite} />
+                addFavorite={this.addFavorite} deleteFavorite={this.deleteFavorite}
+                user={user} />
             </Col>
           }} />
 
@@ -220,7 +244,7 @@ export class MainView extends React.Component {
             return <Col md={8}>
               <ProfileView onLoggedIn={user => this.onLoggedIn(user)}
                 movies={movies.filter((movie) => user.FavoriteMovies.includes(movie._id))} user={user}
-                onBackClick={() => history.goBack()} onUpdate={data => this.onUpdate(data)} />
+                onBackClick={() => history.goBack()} onUpdate={data => this.onUpdate(data)} deleteUser={this.deleteUser} />
             </Col>
           }} />
 
