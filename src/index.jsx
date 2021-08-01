@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore } from 'redux';
 import { MainView } from './components/main-view/main-view';
 import Container from 'react-bootstrap/Container';
 
