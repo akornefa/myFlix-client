@@ -7,7 +7,7 @@ import moviesApp from './reducers/reducers';
 import { devToolsEnhancer } from 'redux-devtools-extension';
 
 
-import { MainView } from './components/main-view/main-view';
+import MainView from './components/main-view/main-view';
 // Import statement to indicate that you need to bundle `./index.scss`
 import './index.scss';
 
@@ -18,7 +18,9 @@ class MyFlixApplication extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <Container><MainView /></Container>
+        <Container>
+          <MainView />
+        </Container>
       </Provider>
     );
   }
