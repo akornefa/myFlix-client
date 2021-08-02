@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 import { connect } from 'react-redux';
-import { setMovies } from '../../actions/actions';
+import { setMovies, setUser } from '../../actions/actions';
 import MoviesList from '../movies-list/movies-list';
 
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
@@ -31,7 +31,7 @@ class MainView extends React.Component {
     super();
     this.state = {
 
-      user: null,
+
       shouldDisplayRegister: false
     };
     this.toggleDisplayRegister = this.toggleDisplayRegister.bind(this);
@@ -46,9 +46,10 @@ class MainView extends React.Component {
   componentDidMount() {
     let accessToken = localStorage.getItem('token');
     if (accessToken !== null) {
-      this.setState({
-        user: JSON.parse(localStorage.getItem('user'))
-      });
+      this.props.setUser(JSON.parse(localStorage.getItem('user')))
+      // this.setState({
+      //   user: JSON.parse(localStorage.getItem('user'))
+      // });
       this.getMovies(accessToken);
     }
   }
@@ -70,9 +71,10 @@ class MainView extends React.Component {
 
   onLoggedIn(authData) {
     console.log(authData);
-    this.setState({
-      user: authData.user
-    });
+    this.props.setUser(authData.user);
+    // this.setState({
+    //   user: authData.user
+    // });
 
     localStorage.setItem('token', authData.token);
     localStorage.setItem('user', JSON.stringify(authData.user));
@@ -88,9 +90,10 @@ class MainView extends React.Component {
   onLoggedOut() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    this.setState({
-      user: null
-    });
+    this.props.setUser('');
+    // this.setState({
+    //   user: null
+    // });
   }
 
   addFavorite(movieid) {
@@ -147,14 +150,15 @@ class MainView extends React.Component {
   onUpdate(data) {
     // localStorage.setItem('token', data.token);
     localStorage.setItem('user', JSON.stringify(data));
-    this.setState({
-      user: data
-    });
+    this.props.setUser(data);
+    // this.setState({
+    //   user: data
+    // });
   }
 
   render() {
-    const { user, shouldDisplayRegister } = this.state;
-    let { movies } = this.props;
+    const { shouldDisplayRegister } = this.state;
+    let { movies, user } = this.props;
     if (!user && shouldDisplayRegister) return (<Row className='justify-content-md-center'><Col md={8}><RegistrationView toggleDisplayRegister={this.toggleDisplayRegister}
       onLoggedIn={user => this.onLoggedIn(user)} /></Col></Row>);
     if (!user && !shouldDisplayRegister) return (<Row className='justify-content-md-center'><Col md={8}><LoginView toggleDisplayRegister={this.toggleDisplayRegister}
@@ -257,9 +261,12 @@ class MainView extends React.Component {
 }
 
 let mapStateToProps = state => {
-  return { movies: state.movies }
+  return {
+    movies: state.movies,
+    user: state.user
+  }
 }
 
-export default connect(mapStateToProps, { setMovies })
+export default connect(mapStateToProps, { setMovies, setUser })
   (MainView);
 
