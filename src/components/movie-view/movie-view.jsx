@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Figure from 'react-bootstrap/Figure';
@@ -65,4 +66,18 @@ export class MovieView extends React.Component {
 
     );
   }
+}
+
+MovieView.propTypes = {
+  movie: PropTypes.shape({
+    Title: PropTypes.string.isRequired,
+    Description: PropTypes.string.isRequired,
+    ImagePath: PropTypes.string.isRequired,
+    Genre: PropTypes.shape.isRequired,
+    Director: PropTypes.shape.isRequired
+  }).isRequired,
+  onBackClick: PropTypes.func.isRequired,
+  addFavorite: PropTypes.func.isRequired,
+  deleteFavorite: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired
 }
