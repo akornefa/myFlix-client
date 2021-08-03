@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { setMovies, setUser, toggleRegister } from '../../actions/actions';
@@ -267,3 +268,10 @@ let mapStateToProps = state => {
 export default connect(mapStateToProps, { setMovies, setUser, toggleRegister })
   (MainView);
 
+MainView.propTypes = {
+  movies: PropTypes.array.isRequired,
+  shouldDisplayRegister: PropTypes.bool,
+  setMovies: PropTypes.func.isRequired,
+  setUser: PropTypes.func.isRequired,
+  toggleRegister: PropTypes.func.isRequired
+};
