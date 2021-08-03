@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import PropTypes from 'prop-types';
 import './login-view.scss'
 import axios from 'axios';
 
@@ -47,4 +48,8 @@ export function LoginView(props) {
     </Form>
 
   );
+}
+
+LoginView.propTypes = {
+  onLoggedIn: PropTypes.func.isRequired
 }
