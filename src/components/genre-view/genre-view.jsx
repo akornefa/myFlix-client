@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
+
 
 export class GenreView extends React.Component {
   render() {
@@ -25,4 +25,12 @@ export class GenreView extends React.Component {
 
     );
   }
+}
+
+GenreView.propTypes = {
+  genre: PropTypes.shape({
+    Name: PropTypes.string.isRequired,
+    Description: PropTypes.string,
+  }).isRequired,
+  onBackClick: PropTypes.func.isRequired
 }
