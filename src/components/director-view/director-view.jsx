@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
+
 
 export class DirectorView extends React.Component {
   render() {
@@ -30,4 +30,13 @@ export class DirectorView extends React.Component {
     );
 
   }
+}
+
+DirectorView.propTypes = {
+  director: PropTypes.shape({
+    Name: PropTypes.string.isRequired,
+    Bio: PropTypes.string,
+    Birth: PropTypes.string
+  }).isRequired,
+  onBackClick: PropTypes.func.isRequired
 }
