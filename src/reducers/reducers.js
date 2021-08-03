@@ -30,7 +30,7 @@ function user(state = '', action) {
   }
 }
 
-function registered(state = false, action) {
+function shouldDisplayRegister(state = false, action) {
   switch (action.type) {
     case TOGGLE_REGISTER:
       return !state;
@@ -43,7 +43,7 @@ const moviesApp = combineReducers({
   visibilityFilter,
   movies,
   user,
-  registered
+  shouldDisplayRegister
 });
 
 

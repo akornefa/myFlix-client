@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 import { connect } from 'react-redux';
-import { setMovies, setUser } from '../../actions/actions';
+import { setMovies, setUser, toggleRegister } from '../../actions/actions';
 import MoviesList from '../movies-list/movies-list';
 
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
@@ -16,7 +16,6 @@ import Navbar from 'react-bootstrap/Navbar';
 
 import { RegistrationView } from '../registration-view/registration-view';
 import { LoginView } from '../login-view/login-view';
-//removed MovieCard import statement
 import { MovieView } from '../movie-view/movie-view';
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
@@ -29,11 +28,7 @@ class MainView extends React.Component {
 
   constructor() {
     super();
-    this.state = {
 
-
-      shouldDisplayRegister: false
-    };
     this.toggleDisplayRegister = this.toggleDisplayRegister.bind(this);
     this.onUpdate = this.onUpdate.bind(this);
     this.addFavorite = this.addFavorite.bind(this);
@@ -82,9 +77,10 @@ class MainView extends React.Component {
   }
 
   toggleDisplayRegister() {
-    this.setState({
-      shouldDisplayRegister: !this.state.shouldDisplayRegister
-    });
+    this.props.toggleRegister(!false);
+    // this.setState({
+    //   shouldDisplayRegister: !this.state.shouldDisplayRegister
+    // });
   }
 
   onLoggedOut() {
@@ -106,7 +102,7 @@ class MainView extends React.Component {
       .then(response => {
         console.log(response);
         this.onUpdate(response.data)
-        const movie = this.state.movies.find((movie) => movie._id === movieid);
+        const movie = this.props.movies.find((movie) => movie._id === movieid);
         alert(movie.Title + ' has been added to Favorites!')
       })
       .catch(function (error) {
@@ -123,7 +119,7 @@ class MainView extends React.Component {
     })
       .then(response => {
         this.onUpdate(response.data)
-        const movie = this.state.movies.find((movie) => movie._id === movieid);
+        const movie = this.props.movies.find((movie) => movie._id === movieid);
         alert(movie.Title + ' has been deleted.')
       })
       .catch(function (error) {
@@ -157,8 +153,8 @@ class MainView extends React.Component {
   }
 
   render() {
-    const { shouldDisplayRegister } = this.state;
-    let { movies, user } = this.props;
+
+    let { movies, user, shouldDisplayRegister } = this.props;
     if (!user && shouldDisplayRegister) return (<Row className='justify-content-md-center'><Col md={8}><RegistrationView toggleDisplayRegister={this.toggleDisplayRegister}
       onLoggedIn={user => this.onLoggedIn(user)} /></Col></Row>);
     if (!user && !shouldDisplayRegister) return (<Row className='justify-content-md-center'><Col md={8}><LoginView toggleDisplayRegister={this.toggleDisplayRegister}
@@ -263,10 +259,11 @@ class MainView extends React.Component {
 let mapStateToProps = state => {
   return {
     movies: state.movies,
-    user: state.user
+    user: state.user,
+    shouldDisplayRegister: state.shouldDisplayRegister
   }
 }
 
-export default connect(mapStateToProps, { setMovies, setUser })
+export default connect(mapStateToProps, { setMovies, setUser, toggleRegister })
   (MainView);
 

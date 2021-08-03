@@ -21894,7 +21894,6 @@ var _navbar = require("react-bootstrap/Navbar");
 var _navbarDefault = parcelHelpers.interopDefault(_navbar);
 var _registrationView = require("../registration-view/registration-view");
 var _loginView = require("../login-view/login-view");
-//removed MovieCard import statement
 var _movieView = require("../movie-view/movie-view");
 var _directorView = require("../director-view/director-view");
 var _genreView = require("../genre-view/genre-view");
@@ -21903,9 +21902,6 @@ var _mainViewScss = require("./main-view.scss");
 class MainView extends _reactDefault.default.Component {
     constructor(){
         super();
-        this.state = {
-            shouldDisplayRegister: false
-        };
         this.toggleDisplayRegister = this.toggleDisplayRegister.bind(this);
         this.onUpdate = this.onUpdate.bind(this);
         this.addFavorite = this.addFavorite.bind(this);
@@ -21946,9 +21942,10 @@ class MainView extends _reactDefault.default.Component {
         this.getMovies(authData.token);
     }
     toggleDisplayRegister() {
-        this.setState({
-            shouldDisplayRegister: !this.state.shouldDisplayRegister
-        });
+        this.props.toggleRegister(true);
+    // this.setState({
+    //   shouldDisplayRegister: !this.state.shouldDisplayRegister
+    // });
     }
     onLoggedOut() {
         localStorage.removeItem('token');
@@ -21969,7 +21966,7 @@ class MainView extends _reactDefault.default.Component {
         }).then((response)=>{
             console.log(response);
             this.onUpdate(response.data);
-            const movie = this.state.movies.find((movie1)=>movie1._id === movieid
+            const movie = this.props.movies.find((movie1)=>movie1._id === movieid
             );
             alert(movie.Title + ' has been added to Favorites!');
         }).catch(function(error) {
@@ -21985,7 +21982,7 @@ class MainView extends _reactDefault.default.Component {
             }
         }).then((response)=>{
             this.onUpdate(response.data);
-            const movie = this.state.movies.find((movie1)=>movie1._id === movieid
+            const movie = this.props.movies.find((movie1)=>movie1._id === movieid
             );
             alert(movie.Title + ' has been deleted.');
         }).catch(function(error) {
@@ -22016,20 +22013,19 @@ class MainView extends _reactDefault.default.Component {
     // });
     }
     render() {
-        const { shouldDisplayRegister  } = this.state;
-        let { movies , user  } = this.props;
+        let { movies , user , shouldDisplayRegister  } = this.props;
         if (!user && shouldDisplayRegister) return(/*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
             className: "justify-content-md-center",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 162
+                lineNumber: 158
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
             md: 8,
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 162
+                lineNumber: 158
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_registrationView.RegistrationView, {
@@ -22038,7 +22034,7 @@ class MainView extends _reactDefault.default.Component {
             ,
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 162
+                lineNumber: 158
             },
             __self: this
         }))));
@@ -22046,14 +22042,14 @@ class MainView extends _reactDefault.default.Component {
             className: "justify-content-md-center",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 164
+                lineNumber: 160
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
             md: 8,
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 164
+                lineNumber: 160
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_loginView.LoginView, {
@@ -22062,68 +22058,68 @@ class MainView extends _reactDefault.default.Component {
             ,
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 164
+                lineNumber: 160
             },
             __self: this
         }))));
         return(/*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.BrowserRouter, {
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 168
+                lineNumber: 164
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
             className: "logoutButtonRow",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 169
+                lineNumber: 165
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_navbarDefault.default, {
             className: "order-3",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 170
+                lineNumber: 166
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_navbarDefault.default.Brand, {
             href: "/",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 171
+                lineNumber: 167
             },
             __self: this
         }, "My Flix!"), /*#__PURE__*/ _reactDefault.default.createElement(_navbarDefault.default.Toggle, {
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 172
+                lineNumber: 168
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_navbarDefault.default.Collapse, {
             className: "justify-content-end",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 173
+                lineNumber: 169
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_navbarDefault.default.Text, {
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 174
+                lineNumber: 170
             },
             __self: this
         }, "Signed in as: ", /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
             to: `/users/${user.Username}`,
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 175
+                lineNumber: 171
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement("span", {
             className: "value",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 175
+                lineNumber: 171
             },
             __self: this
         }, user.Username))))), /*#__PURE__*/ _reactDefault.default.createElement(_colDefault.default, {
@@ -22133,7 +22129,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 179
+                lineNumber: 175
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
@@ -22145,14 +22141,14 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 180
+                lineNumber: 176
             },
             __self: this
         }, "Logout"))), /*#__PURE__*/ _reactDefault.default.createElement(_rowDefault.default, {
             className: "main-view justify-content-md-center",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 184
+                lineNumber: 180
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -22172,7 +22168,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 186
+                lineNumber: 182
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -22185,7 +22181,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 196
+                lineNumber: 192
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -22212,7 +22208,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 203
+                lineNumber: 199
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -22235,7 +22231,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 216
+                lineNumber: 212
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -22258,7 +22254,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 228
+                lineNumber: 224
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Route, {
@@ -22288,7 +22284,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/main-view/main-view.jsx",
-                lineNumber: 242
+                lineNumber: 238
             },
             __self: this
         }))));
@@ -22297,12 +22293,14 @@ class MainView extends _reactDefault.default.Component {
 let mapStateToProps = (state)=>{
     return {
         movies: state.movies,
-        user: state.user
+        user: state.user,
+        shouldDisplayRegister: state.shouldDisplayRegister
     };
 };
 exports.default = _reactRedux.connect(mapStateToProps, {
     setMovies: _actions.setMovies,
-    setUser: _actions.setUser
+    setUser: _actions.setUser,
+    toggleRegister: _actions.toggleRegister
 })(MainView);
 
   helpers.postlude(module);
@@ -33879,7 +33877,7 @@ function user(state = '', action) {
             return state;
     }
 }
-function registered(state = false, action) {
+function shouldDisplayRegister(state = false, action) {
     switch(action.type){
         case _actions.TOGGLE_REGISTER:
             return !state;
@@ -33891,7 +33889,7 @@ const moviesApp = _redux.combineReducers({
     visibilityFilter,
     movies,
     user,
-    registered
+    shouldDisplayRegister
 });
 exports.default = moviesApp;
 
