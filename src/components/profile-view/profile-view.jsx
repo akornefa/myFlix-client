@@ -2,13 +2,10 @@ import axios from 'axios';
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form'
-import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
-import { Link } from "react-router-dom";
-import Jumbotron from 'react-bootstrap/Jumbotron';
 import { MovieCard } from '../movie-card/movie-card'
 import Col from 'react-bootstrap/Col';
-
+import PropTypes from 'prop-types';
 
 
 
@@ -219,4 +216,10 @@ export class ProfileView extends React.Component {
       </div>
     )
   }
+}
+
+ProfileView.propTypes = {
+  movies: PropTypes.array.isRequired,
+  user: PropTypes.object.isRequired,
+  deleteUser: PropTypes.func.isRequired,
 }
