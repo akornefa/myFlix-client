@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
-
+import PropTypes from 'prop-types';
 import './registration-view.scss';
 
 export function RegistrationView(props) {
@@ -138,4 +138,8 @@ export function RegistrationView(props) {
     </Form>
 
   );
+}
+
+RegistrationView.propTypes = {
+  toggleDisplayRegister: PropTypes.func.isRequired
 }
