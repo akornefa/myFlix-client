@@ -23741,6 +23741,7 @@ class MovieView extends _reactDefault.default.Component {
             height: 720,
             alt: "171x180",
             src: movie.ImagePath,
+            className: "movieImage",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/movie-view/movie-view.jsx",
                 lineNumber: 23
@@ -23750,63 +23751,63 @@ class MovieView extends _reactDefault.default.Component {
             className: "movie-title",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 30
+                lineNumber: 32
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement("span", {
             className: "label",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 31
+                lineNumber: 33
             },
             __self: this
         }, "Title: "), /*#__PURE__*/ _reactDefault.default.createElement("span", {
             className: "value",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 32
+                lineNumber: 34
             },
             __self: this
         }, movie.Title)), /*#__PURE__*/ _reactDefault.default.createElement("div", {
             className: "movie-description",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 34
+                lineNumber: 36
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement("span", {
             className: "label",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 35
+                lineNumber: 37
             },
             __self: this
         }, "Description: "), /*#__PURE__*/ _reactDefault.default.createElement("span", {
             className: "value",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 36
+                lineNumber: 38
             },
             __self: this
         }, movie.Description)), /*#__PURE__*/ _reactDefault.default.createElement("div", {
             className: "movie-genre",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 39
+                lineNumber: 41
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement("span", {
             className: "label",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 40
+                lineNumber: 42
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
             to: `/genres/${movie.Genre.Name}`,
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 41
+                lineNumber: 43
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
@@ -23814,35 +23815,35 @@ class MovieView extends _reactDefault.default.Component {
             variant: "link",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 42
+                lineNumber: 44
             },
             __self: this
         }, "Genre: "))), /*#__PURE__*/ _reactDefault.default.createElement("span", {
             className: "value",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 45
+                lineNumber: 47
             },
             __self: this
         }, movie.Genre.Name)), /*#__PURE__*/ _reactDefault.default.createElement("div", {
             className: "movie-director",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 48
+                lineNumber: 50
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement("span", {
             className: "label",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 49
+                lineNumber: 51
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_reactRouterDom.Link, {
             to: `/directors/${movie.Director.Name}`,
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 50
+                lineNumber: 52
             },
             __self: this
         }, /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
@@ -23850,14 +23851,14 @@ class MovieView extends _reactDefault.default.Component {
             variant: "link",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 51
+                lineNumber: 53
             },
             __self: this
         }, "Director:"))), /*#__PURE__*/ _reactDefault.default.createElement("span", {
             className: "value",
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 54
+                lineNumber: 56
             },
             __self: this
         }, movie.Director.Name)), movieInProfile ? /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
@@ -23869,7 +23870,7 @@ class MovieView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 58
+                lineNumber: 60
             },
             __self: this
         }, " Delete Favorite") : /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
@@ -23881,13 +23882,13 @@ class MovieView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 59
+                lineNumber: 61
             },
             __self: this
         }, "Add To Favorites"), /*#__PURE__*/ _reactDefault.default.createElement("br", {
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 61
+                lineNumber: 63
             },
             __self: this
         }), /*#__PURE__*/ _reactDefault.default.createElement(_buttonDefault.default, {
@@ -23899,7 +23900,7 @@ class MovieView extends _reactDefault.default.Component {
             block: true,
             __source: {
                 fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/movie-view/movie-view.jsx",
-                lineNumber: 62
+                lineNumber: 64
             },
             __self: this
         }, "Back")))));
@@ -33297,7 +33298,7 @@ function VisibilityFilterInput(props) {
         onChange: (e)=>props.setFilter(e.target.value)
         ,
         value: props.visibilityFilter,
-        placeholder: "filter",
+        placeholder: "filter: type movie title",
         __source: {
             fileName: "/Users/akornefa/Desktop/myFlix-client/src/components/visibility-filter-input/visibility-filter-input.jsx",
             lineNumber: 9
