@@ -43,9 +43,6 @@ class MainView extends React.Component {
     let accessToken = localStorage.getItem('token');
     if (accessToken !== null) {
       this.props.setUser(JSON.parse(localStorage.getItem('user')))
-      // this.setState({
-      //   user: JSON.parse(localStorage.getItem('user'))
-      // });
       this.getMovies(accessToken);
     }
   }
@@ -55,7 +52,7 @@ class MainView extends React.Component {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(response => {
-        // Assign the result to the state
+
         this.props.setMovies(response.data);
 
       })
@@ -68,9 +65,6 @@ class MainView extends React.Component {
   onLoggedIn(authData) {
     console.log(authData);
     this.props.setUser(authData.user);
-    // this.setState({
-    //   user: authData.user
-    // });
 
     localStorage.setItem('token', authData.token);
     localStorage.setItem('user', JSON.stringify(authData.user));
@@ -79,18 +73,14 @@ class MainView extends React.Component {
 
   toggleDisplayRegister() {
     this.props.toggleRegister(!false);
-    // this.setState({
-    //   shouldDisplayRegister: !this.state.shouldDisplayRegister
-    // });
+
   }
 
   onLoggedOut() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     this.props.setUser('');
-    // this.setState({
-    //   user: null
-    // });
+
   }
 
   addFavorite(movieid) {
@@ -101,7 +91,6 @@ class MainView extends React.Component {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(response => {
-        console.log(response);
         this.onUpdate(response.data)
         const movie = this.props.movies.find((movie) => movie._id === movieid);
         alert(movie.Title + ' has been added to Favorites!')
@@ -145,12 +134,13 @@ class MainView extends React.Component {
   }
 
   onUpdate(data) {
-    // localStorage.setItem('token', data.token);
+
     localStorage.setItem('user', JSON.stringify(data));
     this.props.setUser(data);
-    // this.setState({
-    //   user: data
-    // });
+    if (window.location.pathname.indexOf(`users`) >= 0) {
+      window.location.href = window.location.origin + '/users/' + data.Username;
+    }
+
   }
 
   render() {
