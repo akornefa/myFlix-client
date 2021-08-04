@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { SET_FILTER, SET_MOVIES, SET_USER, TOGGLE_REGISTER } from '../actions/actions';
 
-//get atributes realated to a movie (genre, director, etc.)
+
 function visibilityFilter(state = '', action) {
   switch (action.type) {
     case SET_FILTER:
@@ -11,7 +11,7 @@ function visibilityFilter(state = '', action) {
   }
 }
 
-//initialize movies property with list of movies
+
 function movies(state = [], action) {
   switch (action.type) {
     case SET_MOVIES:
