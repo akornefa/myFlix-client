@@ -17,7 +17,7 @@ export class MovieView extends React.Component {
     const movieInProfile = user.FavoriteMovies.includes(movie._id);
     return (
       <Jumbotron>
-        <Figure>
+        <Figure >
           <div className="movie-view">
             <div className="movie-poster">
               <Figure.Image
@@ -25,6 +25,8 @@ export class MovieView extends React.Component {
                 height={720}
                 alt="171x180"
                 src={movie.ImagePath}
+                className='movieImage'
+
               />
             </div>
             <div className='movie-title'>
