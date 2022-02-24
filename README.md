@@ -5,6 +5,8 @@ server-side code (REST API and database), which you can find in a repository on 
 
 To run, type: npm run dev:watch 
 
+Go to app here: https://myflix-aa.netlify.app/
+
 As a user, you can...
 * View a list of movies in the database
 * Click on a movie to view full movie information including additional data about the movie's 
